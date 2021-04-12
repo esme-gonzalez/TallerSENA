@@ -1,7 +1,7 @@
 Buen dia 
 
-Adjunto archivos de mi aplicacion en .NET donde me permite registrar, listar, buscar, editar y borrar a un estudiante
-tiene sus validaciones para tener una mejor experiencia de usuario y para que no se desborde el programa.
+Adjunto archivos de mi aplicacion en .NET donde me permite registrar, listar, buscar, editar y borrar a un estudiante, 
+esta conectado con mi base de datos,tiene sus validaciones para tener una mejor experiencia de usuario y para que no se desborde el programa.
 
 Fue un gran reto inicial, se me hizo muy complicado el tema de las validaciones, aparecian errores tras errores pero poco a poco 
 y guiandome con los videos y con el codigo que el profesor nos compartio lo pude ir solucionando. 
