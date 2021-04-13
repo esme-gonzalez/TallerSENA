@@ -50,17 +50,17 @@ namespace tallersena
                     NumberFormatInfo numberFormat = usCulture.NumberFormat;
                     temp1 = Double.Parse(texto);
 
-                    if (temp1>=0 && temp1 <= 5)
+                    if (temp1 >= 0 && temp1 <= 5)
                     {
                         aux = true;
                     }
-                    Console.SetCursorPosition(43, 21); Console.Write("*********************");
+                    Console.SetCursorPosition(43, 21); Console.Write("****************************");
                     Console.SetCursorPosition(43, 22); Console.Write("Tiene que tener punto o coma");
-                    Console.SetCursorPosition(43, 23); Console.Write("*********************");
+                    Console.SetCursorPosition(43, 23); Console.Write("****************************");
                 }
-            
-                        
-                        
+
+
+
             }
             return aux;
 

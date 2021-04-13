@@ -155,9 +155,9 @@ namespace tallersena
                     Console.SetCursorPosition(25, 13); Console.Write("Digite Nota 1 Estudiante: ");
                     Console.SetCursorPosition(55, 13); no1Txt = Console.ReadLine();
                     if (!verificar.Vacio(no1Txt))
-                        if (!verificar.TipoNota(no1Txt))
                             if (verificar.TipoNumero(no1Txt))
-                            EntradaValidaNota1 = true;
+                            if (verificar.TipoNota(no1Txt))
+                                EntradaValidaNota1 = true;
                 } while (!EntradaValidaNota1);
 
                 do
@@ -168,7 +168,7 @@ namespace tallersena
 
                     if (!verificar.Vacio(no2Txt))
                         if (verificar.TipoNumero(no2Txt))
-                            if (!verificar.TipoNota(no2Txt))
+                            if (verificar.TipoNota(no2Txt))
                                 EntradaValidaNota2 = true;
                 } while (!EntradaValidaNota2);
                 do
@@ -178,7 +178,7 @@ namespace tallersena
                     Console.SetCursorPosition(55, 17); no3Txt = Console.ReadLine();
                     if (!verificar.Vacio(no3Txt))
                         if (verificar.TipoNumero(no3Txt))
-                            if (!verificar.TipoNota(no3Txt))
+                            if (verificar.TipoNota(no3Txt))
                                 EntradaValidaNota3 = true;
                 } while (!EntradaValidaNota3);
 
@@ -318,16 +318,21 @@ namespace tallersena
             if (existe != null)
             {
 
-                Console.WriteLine("Digite Nombre Estudiante");
-                nom = Console.ReadLine();
-                Console.WriteLine("Digite Correo Estudiante");
-                cor = Console.ReadLine();
-                Console.WriteLine("Digite Nota 1");
-                no1 = double.Parse(Console.ReadLine());
-                Console.WriteLine("Digite Nota 2");
-                no2 = double.Parse(Console.ReadLine());
-                Console.WriteLine("Digite Nota 3");
-                no3 = double.Parse(Console.ReadLine());
+
+                Console.SetCursorPosition(25, 9); Console.WriteLine("Digite Nombre Estudiante:");
+                Console.SetCursorPosition(55, 9); nom = Console.ReadLine();
+
+                Console.SetCursorPosition(25, 11); Console.WriteLine("Digite Correo Estudiante:");
+                Console.SetCursorPosition(55, 11); cor = Console.ReadLine();
+
+                Console.SetCursorPosition(25, 13); Console.WriteLine("Digite Nota 1:");
+                Console.SetCursorPosition(55, 13); no1 = double.Parse(Console.ReadLine());
+
+                Console.SetCursorPosition(25, 15); Console.WriteLine("Digite Nota 2:");
+                Console.SetCursorPosition(55, 15); no2 = double.Parse(Console.ReadLine());
+
+                Console.SetCursorPosition(25, 17); Console.WriteLine("Digite Nota 3:");
+                Console.SetCursorPosition(55, 17); no3 = double.Parse(Console.ReadLine());
 
                 var myEstudiante = db.Estudiantes.FirstOrDefault(e => e.Codigo == cod);
                 myEstudiante.Nombre = nom;
