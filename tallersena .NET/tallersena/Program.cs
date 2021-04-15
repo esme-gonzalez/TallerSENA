@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using tallersena.Modelo;
 
@@ -13,6 +14,7 @@ namespace tallersena
         static void Main(string[] args)
 
         {
+            CultureInfo.CurrentCulture = new CultureInfo("en-US", false);
             int OpcMen;
 
             string temporal;
@@ -34,6 +36,7 @@ namespace tallersena
                 Console.SetCursorPosition(56, 4); Console.WriteLine("4. Editar ");
                 Console.SetCursorPosition(68, 4); Console.WriteLine("5. Borrar ");
                 Console.SetCursorPosition(80, 4); Console.WriteLine("0. salir ");
+                Console.SetCursorPosition(50, 11); Console.WriteLine("BIENVENIDOS");
 
                 do
                 {
@@ -67,10 +70,16 @@ namespace tallersena
                         break;
                     case 0:
                         gui.BorrarLinea(20, 22, 80);
-                        gui.BorrarLinea(40, 22, 80);
-                        Console.SetCursorPosition(35, 12); Console.WriteLine("*************************************");
-                        Console.SetCursorPosition(35, 13); Console.WriteLine("**Gracias por usar nuestro programa**");
-                        Console.SetCursorPosition(35, 14); Console.WriteLine("*************************************");
+                        gui.BorrarLinea(20, 23, 80);
+                        gui.BorrarLinea(20, 24, 80);
+                        gui.BorrarLinea(20, 25, 80);
+                        gui.BorrarLinea(20, 26, 80);
+                        gui.BorrarLinea(20, 27, 80);
+                        gui.BorrarLinea(20, 28, 80);
+                        gui.BorrarLinea(20, 29, 80);
+                        Console.SetCursorPosition(37, 14); Console.WriteLine("*************************************");
+                        Console.SetCursorPosition(37, 15); Console.WriteLine("**Gracias por usar nuestro programa**");
+                        Console.SetCursorPosition(37, 16); Console.WriteLine("*************************************");
                         break;
                     default:
                         gui.BorrarLinea(40, 22, 80);
@@ -79,10 +88,10 @@ namespace tallersena
                 }
 
                 gui.BorrarLinea(40, 23, 80);
-                Console.SetCursorPosition(35, 22); Console.WriteLine("*****************************************");
-                Console.SetCursorPosition(35, 23); Console.WriteLine("*Presione cualquier tecla para continuar*");
-                Console.SetCursorPosition(35, 24); Console.WriteLine("*****************************************");
-                Console.SetCursorPosition(2, 31); Console.ReadKey();
+                Console.SetCursorPosition(35, 25); Console.WriteLine("*****************************************");
+                Console.SetCursorPosition(35, 26); Console.WriteLine("*Presione cualquier tecla para continuar*");
+                Console.SetCursorPosition(35, 27); Console.WriteLine("*****************************************");
+                Console.SetCursorPosition(2, 30); Console.ReadKey();
 
             } while (OpcMen > 0);
 
@@ -108,7 +117,7 @@ namespace tallersena
             bool EntradaValidaNota3 = false;
 
             Console.Clear();
-            gui.Marco(1, 110, 1, 25);
+            gui.Marco(1, 110, 1, 30);
             gui.Marco(1, 110, 1, 5);
             Console.SetCursorPosition(45, 2); Console.WriteLine("************************");
             Console.SetCursorPosition(45, 3); Console.WriteLine("***AGREGAR ESTUDIANTE***");
@@ -142,7 +151,7 @@ namespace tallersena
 
                 do
                 {
-                    gui.BorrarLinea(33, 9, 64);
+
                     Console.SetCursorPosition(25, 11); Console.Write("Digite Correo Estudiante: ");
                     Console.SetCursorPosition(55, 11); cor = Console.ReadLine();
                     if (!verificar.Vacio(cor))
@@ -155,8 +164,8 @@ namespace tallersena
                     Console.SetCursorPosition(25, 13); Console.Write("Digite Nota 1 Estudiante: ");
                     Console.SetCursorPosition(55, 13); no1Txt = Console.ReadLine();
                     if (!verificar.Vacio(no1Txt))
+                        if (verificar.TipoNumero(no1Txt))
                             if (verificar.TipoNumero(no1Txt))
-                            if (verificar.TipoNota(no1Txt))
                                 EntradaValidaNota1 = true;
                 } while (!EntradaValidaNota1);
 
@@ -165,7 +174,6 @@ namespace tallersena
                     gui.BorrarLinea(33, 9, 64);
                     Console.SetCursorPosition(25, 15); Console.Write("Digite Nota 2 Estudiante: ");
                     Console.SetCursorPosition(55, 15); no2Txt = Console.ReadLine();
-
                     if (!verificar.Vacio(no2Txt))
                         if (verificar.TipoNumero(no2Txt))
                             if (verificar.TipoNota(no2Txt))
@@ -188,9 +196,9 @@ namespace tallersena
                     Codigo = int.Parse(codTxt),
                     Nombre = nom,
                     Correo = cor,
-                    Nota1 = int.Parse(no1Txt),
-                    Nota2 = int.Parse(no2Txt),
-                    Nota3 = int.Parse(no2Txt),
+                    Nota1 = double.Parse(no1Txt),
+                    Nota2 = double.Parse(no2Txt),
+                    Nota3 = double.Parse(no2Txt),
                 };
 
                 db.Estudiantes.Add(estudiante);
@@ -199,15 +207,16 @@ namespace tallersena
 
             }
             else
+            {
                 Console.SetCursorPosition(25, 19); Console.WriteLine("Ya Existe");
-
+            }
 
         }
 
         static void listaestudiantes()
         {
             Console.Clear();
-            gui.Marco(1, 110, 1, 25);
+            gui.Marco(1, 110, 1, 30);
             gui.Marco(1, 110, 1, 5);
             int altura = 9;
             Console.SetCursorPosition(45, 2); Console.WriteLine("***********************");
@@ -241,11 +250,11 @@ namespace tallersena
                 Console.SetCursorPosition(63, altura); Console.WriteLine($"{myEstudiantes.Nota1}");
                 Console.SetCursorPosition(71, altura); Console.WriteLine($"{myEstudiantes.Nota2}");
                 Console.SetCursorPosition(78, altura); Console.WriteLine($"{myEstudiantes.Nota3}");
-                Console.SetCursorPosition(86, altura); Console.WriteLine($"[{string.Format("{0:0}", NF)}]{ myEstudiantes.concepto(NF)}");
-
+                Console.SetCursorPosition(86, altura); Console.WriteLine($"[{NF:.##}]  {myEstudiantes.concepto (NF)}");
+                
                 altura++;
 
-                 }
+            }
 
 
 
@@ -256,7 +265,7 @@ namespace tallersena
             int cod = 0;
             
             Console.Clear();
-            gui.Marco(1, 110, 1, 25);
+            gui.Marco(1, 110, 1, 30);
             gui.Marco(1, 110, 1, 5);
             Console.SetCursorPosition(45, 2); Console.WriteLine("************************");
             Console.SetCursorPosition(45, 3); Console.WriteLine("***BUSCAR ESTUDIANTES***");
@@ -286,22 +295,24 @@ namespace tallersena
                 Console.SetCursorPosition(63, 12); Console.WriteLine($"{myEstudiante.Nota1}");
                 Console.SetCursorPosition(71, 12); Console.WriteLine($"{myEstudiante.Nota2}");
                 Console.SetCursorPosition(78, 12); Console.WriteLine($"{myEstudiante.Nota3}");
-                Console.SetCursorPosition(86, 12); Console.WriteLine($"[{string.Format("{0:0}", NF)}]{ myEstudiante.concepto(NF)}");
+                Console.SetCursorPosition(86, 12); Console.WriteLine($"[{NF:.##}]  {myEstudiante.concepto(NF)}");
             }
             else
+            {
                 Console.SetCursorPosition(40, 15); Console.WriteLine("No existe registro");
-
+            }
 
 
         }
 
         static void editarestudiante()
         {
+           
             double no1, no2, no3 = 0;
             string nom, cor = "";
             int cod = 0;
             Console.Clear();
-            gui.Marco(1, 110, 1, 25);
+            gui.Marco(1, 110, 1, 30);
             gui.Marco(1, 110, 1, 5);
             Console.SetCursorPosition(45, 2); Console.WriteLine("***********************");
             Console.SetCursorPosition(45, 3); Console.WriteLine("***EDITAR ESTUDIANTE***");
@@ -311,14 +322,13 @@ namespace tallersena
             Console.SetCursorPosition(25, 7); Console.WriteLine("Digite Codigo a editar");
             Console.SetCursorPosition(55, 7); cod = int.Parse(Console.ReadLine());
 
+          
 
             var db = new tallersena2Context();
             var existe = db.Estudiantes.Find(cod);
 
             if (existe != null)
             {
-
-
                 Console.SetCursorPosition(25, 9); Console.WriteLine("Digite Nombre Estudiante:");
                 Console.SetCursorPosition(55, 9); nom = Console.ReadLine();
 
@@ -339,7 +349,7 @@ namespace tallersena
                 myEstudiante.Correo = cor;
                 myEstudiante.Nota1 = no1;
                 myEstudiante.Nota2 = no2;
-                myEstudiante.Nota3 = no2;
+                myEstudiante.Nota3 = no3;
                 db.SaveChanges();
 
                 Console.SetCursorPosition(40, 20); Console.WriteLine("Registro Editado  Correctamente");
@@ -347,8 +357,9 @@ namespace tallersena
             }
 
             else
+            {
                 Console.SetCursorPosition(40, 15); Console.WriteLine("No existe registro");
-
+            }
 
         }
 
@@ -356,18 +367,18 @@ namespace tallersena
         {
             int cod = 0;
             Console.Clear();
-            gui.Marco(1, 110, 1, 25);
+            gui.Marco(1, 110, 1, 30);
             gui.Marco(1, 110, 1, 5);
             Console.SetCursorPosition(45, 2); Console.WriteLine("***********************");
             Console.SetCursorPosition(45, 3); Console.WriteLine("***BORRAR ESTUDIANTE***");
             Console.SetCursorPosition(45, 4); Console.WriteLine("***********************");
             gui.Linea(40, 5, 30);
 
-            
-                gui.BorrarLinea(33, 9, 64);
-                Console.SetCursorPosition(25, 7); Console.Write("Digite Codigo Estudiante: ");
-                Console.SetCursorPosition(55, 7); cod = int.Parse(Console.ReadLine());
-              
+
+            gui.BorrarLinea(33, 9, 64);
+            Console.SetCursorPosition(25, 7); Console.Write("Digite Codigo Estudiante: ");
+            Console.SetCursorPosition(55, 7); cod = int.Parse(Console.ReadLine());
+
 
             var db = new tallersena2Context();
             var existe = db.Estudiantes.Find(cod);
@@ -386,13 +397,17 @@ namespace tallersena
                     Console.SetCursorPosition(40, 14); Console.WriteLine("El registro fue borrado correctamente ");
 
                 }
-                else
-                    Console.SetCursorPosition(45, 15); Console.Write("No eliminado");
 
+                else
+                {
+                    Console.SetCursorPosition(45, 15); Console.Write("No eliminado");
+                }
 
             }
             else
+            {
                 Console.SetCursorPosition(45, 15); Console.WriteLine("No existe");
+            }
         }
 
 

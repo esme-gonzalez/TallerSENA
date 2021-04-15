@@ -1,6 +1,6 @@
 Buen dia 
-
-Adjunto archivos de mi aplicacion en .NET donde me permite registrar, listar, buscar, editar y borrar a un estudiante, 
+Adjunto archivos de UML
+Aplicacion en .NET donde me permite registrar, listar, buscar, editar y borrar a un estudiante, 
 esta conectado con mi base de datos,tiene sus validaciones para tener una mejor experiencia de usuario y para que no se desborde el programa.
 
 Fue un gran reto inicial, se me hizo muy complicado el tema de las validaciones, aparecian errores tras errores pero poco a poco 
